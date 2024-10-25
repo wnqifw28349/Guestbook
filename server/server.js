@@ -26,7 +26,7 @@ app.post("/messages", function (req, res) {
   const { name, message } = req.body; //destructuring data, obtaining multiple items from a database
   //write the script with placeholder values. Sanitising inputs for SQL injection
   const result = db.query(
-    "INSERT INTO guestbook (name, message) VALUES $1, $2)",
+    "INSERT INTO guestbook (name, message) VALUES ($1, $2))",
     [name, message]
   );
   //send back json response if row value !=1#
@@ -34,6 +34,6 @@ app.post("/messages", function (req, res) {
   res.json(result);
 });
 
-app.listen(3500, function () {
-  console.log(`Server is running on port 3500`);
+app.listen(3000, function () {
+  console.log(`Server is running on port 3000`);
 });

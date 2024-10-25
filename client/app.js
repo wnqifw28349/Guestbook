@@ -14,8 +14,9 @@ async function handleSubmit(event) {
     body: JSON.stringify(formObj),
   });
 
-  const messages = await response.json();
-  console.log(messages);
+  // const messages = await response.json();
+
+  console.log(response);
 }
 
 messageForm.addEventListener("submit", handleSubmit);
