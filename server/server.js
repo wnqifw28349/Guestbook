@@ -1,4 +1,3 @@
-// server.js
 // import our node modules
 import express, { json } from "express";
 import cors from "cors";
@@ -12,9 +11,7 @@ app.use(express.json());
 dotenv.config();
 
 // connect to our database
-const db = new pg.Pool({
-  connectionString: process.env.DATABASE_URL,
-});
+const db = new pg.Pool({ connectionString: process.env.DATABASE_URL });
 
 app.get("/", (req, res) => {
   res.json("You are at the root route.");
@@ -30,17 +27,15 @@ app.get("/messages", async function (req, res) {
 
 app.post("/messages", function (req, res) {
   // get the request body
-  const { message, name } = request.body; //destructuring data, obtaining multiple items from a database
-
+  const { name, message } = req.body; //destructuring data, obtaining multiple items from a database
   //write the script with placeholder values. Sanitising inputs for SQL injection
   const result = db.query(
-    "INSERT INTO guestbook (name, message) VALUES ($1, $2)",
+    "INSERT INTO guestbook (name, message) VALUES $1, $2)",
     [name, message]
   );
+  //send back json response if row value !=1#
 
-  //send back json response if row value !=1
-
-  json.response(result);
+  res.json(result);
 });
 
 app.listen(3000, function () {
