@@ -3,14 +3,15 @@ const messageForm = document.getElementById("message-form");
 
 async function handleSubmit(event) {
   event.preventDefault();
-  //get info from form using FormData
+
+  //get info from the form
   const formData = new FormData(messageForm);
-  const body = Object.fromEntries(formData);
-  //post request
+  const formObj = Object.fromEntries(formData);
+
   const response = await fetch("https://guestbook-l74i.onrender.com/messages", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
+    body: JSON.stringify(formObj),
   });
 
   const messages = await response.json();
@@ -27,7 +28,7 @@ async function getMessages() {
   const response = await fetch("https://guestbook-l74i.onrender.com/messages");
   const messages = await response.json();
 
-  // display the books on the page
+  // display the messages
   for (let i = 0; i < messages.length; i++) {
     // make a variable for the information in the book
     const name = messages[i].name;

@@ -1,16 +1,13 @@
-// import our node modules
 import express, { json } from "express";
 import cors from "cors";
 import pg from "pg";
 import dotenv from "dotenv";
 
-// setup the server
 const app = express();
 app.use(cors());
 app.use(express.json());
 dotenv.config();
 
-// connect to our database
 const db = new pg.Pool({ connectionString: process.env.DATABASE_URL });
 
 app.get("/", (req, res) => {
@@ -18,10 +15,9 @@ app.get("/", (req, res) => {
 });
 
 app.get("/messages", async function (req, res) {
-  // select all of the messages
   const result = await db.query("SELECT * FROM guestbook");
   const messages = result.rows;
-  // send the messages to the client
+
   res.json(messages);
 });
 
