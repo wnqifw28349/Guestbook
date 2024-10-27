@@ -1,0 +1,13 @@
+body {
+  font-family: Helvetica;
+  background-color: black;
+  color: white;
+}
+
+#message-form {
+  display: flex;
+  flex-flow: wrap;
+  width: fit-content;
+  justify-content: center;
+  gap: 2vw;
+}

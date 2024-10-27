@@ -22,15 +22,11 @@ app.get("/messages", async function (req, res) {
 });
 
 app.post("/messages", function (req, res) {
-  // get the request body
-  const { name, message } = req.body; //destructuring data, obtaining multiple items from a database
-  //write the script with placeholder values. Sanitising inputs for SQL injection
+  const { name, message } = req.body;
   const result = db.query(
     "INSERT INTO guestbook (name, message) VALUES ($1, $2)",
     [name, message]
   );
-  //send back json response if row value !=1#
-
   res.json(result);
 });
 

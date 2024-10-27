@@ -4,15 +4,23 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Guestbook</title>
+    <title>Wrote.it</title>
+    <link rel="stylesheet" href="./style.css" />
     <script type="module" src="./app.js" defer></script>
 </head>
 
 <body>
-    <h1>Welcome to Guestbook!</h1>
+    <div id="instructions">
+        <h1>Welcome to Wrote.it!</h1>
+        <h2>Instructions</h2>
+        <p>1.Enter your name and message</p>
+        <p>2.Press "Post"</p>
+        <p>3.Refresh the page</p>
+    </div>
+
     <form id="message-form">
-        <input name="name" placeholder="Your Name" />
-        <input name="message" placeholder="Your Message" />
+        <input name="name" placeholder="Your Name" id="name" />
+        <input name="message" placeholder="Your Message" id="message" />
         <button>Post</button>
     </form>
     <div id="message-container">
